@@ -220,9 +220,9 @@ int main() {
     int maxprior, op, prior, value;
     printf("Por favor, insira o número de prioridades abaixo e pressione a tecla Enter. \n");
     scanf("%d", &maxprior);
-
-    FilaPriMult * f = newFilaPriMult(maxprior); //adicionamos mais um para não termos overflow
-
+    
+    FilaPriMult * f = newFilaPriMult(maxprior); 
+    
     printf("\nPrioridade máxima: %d\n", maxprior - 1);
 
     while(1) {
