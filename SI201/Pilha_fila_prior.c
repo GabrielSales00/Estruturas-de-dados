@@ -1,7 +1,17 @@
+/*Universidade Estadual de Campinas (UNICAMP)
+
+Disciplina: SI201 - Estrutura de Dados I.
+
+Nomes: Gabriel Sales da Silva Matos de Araujo, Lorena Eduarda Santos, Leonardo Issao Sato.
+
+Questão 57 da Apostila de Estrutura de Dados.*/
+
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include <unistd.h>
 
 typedef struct No {
     int valor;
@@ -180,7 +190,7 @@ void printFilaPriMult(FilaPriMult *fila, int maxprior) {
     printf("Fila de prioridades %d\n", maxprior);
     
     for (int i = 0; i < maxprior; i++) {
-        printf("Prioridade %d: ", i + 1);
+        printf("Prioridade %d: ", i);
         printFila(fila->prioridade[i]);
         printf("]");
         printf("\n");
@@ -208,37 +218,39 @@ int removerPriMult(FilaPriMult *f, int maxprior) {
 
 int main() {
     int maxprior, op, prior, value;
-    printf("Por favor, insira a prioridade máxima abaixo \n");
+    printf("Por favor, insira o número de prioridades abaixo e pressione a tecla Enter. \n");
     scanf("%d", &maxprior);
 
-    FilaPriMult * f = newFilaPriMult(maxprior + 1); //adicionamos mais um para não termos overflow
+    FilaPriMult * f = newFilaPriMult(maxprior); //adicionamos mais um para não termos overflow
+
+    printf("\nPrioridade máxima: %d\n", maxprior - 1);
 
     while(1) {
-        printf("Pressione 1 para inserir um elemento, 2 para remover um elemento, 3 para imprimir e 4 para sair\n");
+        printf("\nPressione 1 para inserir um elemento, 2 para remover um elemento, 3 para imprimir e 4 para sair\n");
 
         scanf("%d", &op);
 
         switch (op)
         {
         case 1:
-            printf("Insira o valor do elemento e sua prioridade, separados por um espaço:\n");
+            printf("\nInsira o valor do elemento e sua prioridade, separados por um espaço:\n");
             scanf("%d %d", &value, &prior);
             addPriMult(f, value, prior);
             break;
         case 2:
-            printf("Removendo... \n");
+            printf("\nRemovendo... \n");
             removerPriMult(f, maxprior);
             break;
         case 3:
             printFilaPriMult(f, maxprior);
             break;
         case 4:
-            printf("Saindo...");
-            break;
+            printf("\nSaindo...\n");
+            exit(0);
 
 
         default:
-            printf("Valor inválido!");
+            printf("\nValor inválido!\n");
             break;
         }
     }
